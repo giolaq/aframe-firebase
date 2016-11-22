@@ -17,6 +17,7 @@ AFRAME.registerComponent('random-position-at', {
       return;
     }
 
+
     setTimeout(function () {
       var entities = el.sceneEl.querySelectorAll(data.selector);
       var entity = entities[Math.floor(Math.random() * entities.length)];
@@ -28,6 +29,16 @@ AFRAME.registerComponent('random-position-at', {
         y: position.y + parentPosition.y + data.offset.y,
         z: position.z + parentPosition.z + data.offset.z
       });
+
+      this.setAttribute('material', 'color', function () {
+          var letters = '0123456789ABCDEF';
+          var color = '#';
+          for (var i = 0; i < 6; i++ ) {
+              color += letters[Math.floor(Math.random() * 16)];
+          }
+          return color;
+      });
+
     }, 100);
   }
 });
